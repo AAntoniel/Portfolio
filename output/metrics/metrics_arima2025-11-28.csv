@@ -1,0 +1,2 @@
+model,order,rmse,rmse_std,mae,mae_std,split
+ARIMA-SW3Y,(5, 1, 41),234.69,254.48,190.75,209.84,test

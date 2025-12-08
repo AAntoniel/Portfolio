@@ -1,0 +1,2 @@
+model,n_est,max_d,max_l,rmse,rmse_std,mae,mae_std,split
+XGB-SW3Y,400,8,16,199.94,224.88,163.58,183.63,test

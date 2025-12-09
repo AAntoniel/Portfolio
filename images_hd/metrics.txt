@@ -1,0 +1,9 @@
+Train accuracy:  0.8412291933418694
+Train AUC:  0.9096791096253847
+Train Recall:  0.8773148148148148
+Train Precision:  0.8422222222222222
+--------------------
+Test accuracy:  0.7971014492753623
+Test AUC:  0.89526740237691
+Test Recall:  0.881578947368421
+Test Precision:  0.7790697674418605

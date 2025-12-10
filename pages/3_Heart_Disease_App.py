@@ -142,3 +142,13 @@ else:
     st.warning(
         "**Recommendation**: Please consult a doctor immediately for clinical exams."
     )
+
+st.divider()
+
+st.write(
+    """
+    **Thank you for reading and trying the app! If you want to check how was the construction of this app, please read the 'Heart Disease Project' in the side bar.**
+    
+    **Feel free to also explore the other pages in the sidebar.**
+"""
+)

@@ -5,14 +5,15 @@ st.title("❤️Heart Disease - Project Overview")
 
 st.write(
     """
-    This section provides a complete, clear, and visual explanation of the Heart Disease Prediction project — from
+    This page provides a complete, clear, and visual explanation of the Heart Disease Prediction project, from
     data preparation to model evaluation and the final application.
-    A escolha pelo dados de problemas cardíacos se deu pela vontado de criar um app simples, de fácil interpretação
-    e que tivesse alguma utilidade além de um simples projeto de portfólio.
-    Essa página irá explicar o que foi feito, sem entrar em muitos detalhes técnicos de código. Caso seja de interesse,
-    O código completo pode ser conferido em: https://github.com/AAntoniel/Heart_disease
+    
+    The selection of heart disease data was driven by the goal of building a user-friendly tool with real-world applicability. This 
+    overview focuses on the implementation logic and results rather than low-level code structure. 
+    
+    Repository: https://github.com/AAntoniel/Heart_disease
 
-    Os dados utilizados são públicos e estão disponíveis em: https://archive.ics.uci.edu/ml/datasets/heart+disease
+    Dataset: https://archive.ics.uci.edu/ml/datasets/heart+disease
     """
 )
 
@@ -69,22 +70,19 @@ st.write(
 
 st.image(
     "images_hd/heart_dis_dataset.png",
-    use_container_width=True,
+    # use_container_width=True,
 )
 
 st.write(
     """
-    O início dos tratamentos dos dados iniciou com a coluna target, que continha números diferentes de 0 e 1, 
-    pois são possíveis tipos diferentes de doenças. O projeto atual buscou simplificar isso em uma classificação 
-    binária, ou seja 0 = não possui doença; 1 = possui doença. Para essa variável, esse foi o único tratamento.
-
-    Depois passando para as features, primeiramente foi a vez de verificar, valores 0s sem sentidos. Nas colunas como
-    colesteról e pressão sanguínea em repouso, existiam marcações com 0, o que não faz sentido, pois uma pessoa
-    sem essas medições não tem outro status a não ser morto. Esse valores 0s foram substituídos por NaNs, ou *Not
-    a Number*, que, a grosso modo, pode ser classificado como valor faltante. Esse passo é necessário para o próximo
-    passo, que é a imputação de valores faltantes. 
-
-    Verificando os valores faltantes, observamos o seguinte:
+    The start of the data preprocessing aimed the target variable. The original multi-class target was binarized to 
+    simplify the problem: 0 represented the absence of disease, and 1 indicated its presence.
+    
+    After that, for the features, the dataset contained biologically impossible zero values for variables such as cholesterol and 
+    resting blood pressure. These entries were treated as data errors and converted to NaNs (Not a Number) to facilitate 
+    the subsequent imputation strategy. 
+    
+    The analysis of missing values revealed the following distribution:
 """
 )
 
@@ -95,20 +93,16 @@ with col2:
 
 st.write(
     """
-    Para evitar distorções e tentar preservar o comportamento real dos dados, foi utilizada uma imputação condicional 
-    baseada em sexo e tipo de dor no peito. Essa abordagem reduz viés, preserva diferenças clínicas entre grupos 
-    e melhora a qualidade preditiva do modelo.
+    To preserve data integrity and maintain clinical distinctions between groups, a conditional imputation method was applied based on Sex and Chest Pain Type.
 
-    Para as variáveis **numéricas** sendo elas as colunas *restbps,chol,max_heart_rate,oldpeak*, foi imputada a mediana
-    dessas condições, já que ela não tem influência de valores atípicos. Já para as variáveis **categóricas**, colunas
-    *fast_blood_sug, rest_electcard, exc_angina, slope, n_fl_maj_ves, thal*, a moda dessas condições foi escolhida.
+    - Numerical Variables (restbps, chol, max_heart_rate, oldpeak): Imputed using the median of the subgroups to minimize the influence of outliers.
 
-    Essas variáveis foram apenas escolhas do autor, porém diversas outras formas de imputação podem ser empregadas,
-    seja por diferentes variáveis ou diferentes técnicas.
+    - Categorical Variables (fast_blood_sug, rest_electcard, exc_angina, etc.): Imputed using the mode (most frequent value).
+    
+    To prevent the distortion of underlying data patterns, this approach rejects global metrics in favor of subgroup-specific values. By rejecting dataset-wide 
+    averages in favor of subgroup metrics, the methodology ensures that the imputed data remains representative for specific patient clusters.
 
-    Após isso, sobrou apenas um linha com valores faltantes que foi excluída da base, pois não teria tanta influência
-    no valor final e não valeria o esforço de imputar apenas mais uma linha de informação. Se verificar novamente os valores
-    faltantes, obtém-se o seguinte:
+    Following this process, one residual row containing missing values was removed from the dataset. The resulting data integrity check showed:
 """
 )
 
@@ -127,15 +121,20 @@ st.write(
     The entire workflow was structured following the **SEMMA methodology**, widely used for data mining:
 
     ### **S – Sample**
-    Dataset split into target and features and also in train and test splits
-    Os dados foram estratificados para garantir a variabilidade e a proporção igual entre os targets de train e test 
+    Dataset split into target and features and also in train and test splits.
+    Stratified sampling was applied during the train-test split to preserve the distribution of the target variable and ensure sample variability. 
 
     ### **E – Explore**
-    No explore, as variáveis foram analisadas medindo sua influência em relação ao target com um *feature importances*. Inicialmente tudo 
-    o que tinha uma acumulada menor do que 1 foi selecionado. O modelo ficou robusto, porém, a usabilidade para um usuário comum ficou difícil
-    pois o modelo dependia muito de variáveis médicas avançadas para detectar uma doença.   
-    Então, para facilitar a usabilidade do modelo, as variáveis *chol, max_heart_rate, chest_pain, sex, restbps, age, exc_angina* foram deixadas
-    de forana hora do treinamento do modelo.
+    In the exploration, the variables were analyzed by measuring their influence in relation to the target using a *tree.feature_importances_* approach. 
+    The initial modeling utilizing comprehensive clinical data achieved excellent technical performance 
+    (Precision: 88.4%, Recall: 90.8%). However, the reliance on complex medical data created a barrier for ordinary users.
+    
+    To prioritize accessibility, the project pivoted to a "Lite Model" trained exclusively on demographics and basic symptoms. The objective shifted from 
+    providing a complex clinical diagnosis to acting as a preventive screening tool.
+    
+    While this simplification reduced Precision to 77.9% (increasing the rate of false positives), the most critical safety metric, Recall, remained 
+    robust at 88.2%, a minimal drop of 2.6%. This results showed that basic variables can be powerful predictors. The final model accepts a more conservative, 
+    "alarmist" threshold to ensure universal usability and guarantee that high-risk cases are successfully flagged for medical attention.
 """
 )
 
@@ -143,59 +142,43 @@ st.write(
     """
     ### **M – Modify and M - Modeling**
     #### Modify
-    Nesse passo, foi necessária transformar os dados em uma maneira que a máquina consiga entendê-los, então a primeira coisa foi discretizar
-    as variáveis numéricas.
-    Em resumo, discretizar é o processo de transformar variáveis contínuas em categorias para melhorar interpretação, e, em 
-    alguns casos, aumentar a capacidade preditiva do modelo.
-    Após a discretização é aplicado o *OneHotEncoder*, que então converte variáveis categóricas em colunas binárias, permitindo 
-    que modelos os trabalhem com simples categorias de *sim* e *não*
+    To ensure machine readability, numerical features were first discretized, transforming continuous values into categorical 
+    bins to enhance interpretability and predictive power. Subsequently, One-Hot Encoding was applied to convert these categorical 
+    features into binary vectors (0 or 1), allowing the algorithm to process them as distinct logical inputs.
     
     #### Modeling
-    Com os dados prontos para uso, basta configurar o modelo. O modelo escolhido aqui foi o RandomForest. 
-    Um GridSearch simples foi realizado, testando todas as combinações possíveis dos seguintes hiperparâmetros:
+    With the dataset fully preprocessed, the Random Forest algorithm was selected for implementation. To maximize performance, a Grid Search 
+    was conducted to exhaustively test all potential combinations of the following hyperparameters:
 """
 )
 
 col1, col2, col3 = st.columns([1, 2, 1])
 
-with col2:
+with col1:
     st.image("images_hd/hips.png", width=550)
 
 st.write(
     """
-    ### **M – Modify and M - Modeling**
-    #### Modify
-    Nesse passo, foi necessária transformar os dados em uma maneira que a máquina consiga entendê-los, então a primeira coisa foi discretizar
-    as variáveis numéricas.
-    Em resumo, discretizar é o processo de transformar variáveis contínuas em categorias para melhorar interpretação, e, em 
-    alguns casos, aumentar a capacidade preditiva do modelo.
-    Após a discretização é aplicado o *OneHotEncoder*, que então converte variáveis categóricas em colunas binárias, permitindo 
-    que modelos os trabalhem com simples categorias de *sim* e *não*
-    
-    #### Modeling
-    Com os dados prontos para uso, basta configurar o modelo. O modelo escolhido aqui foi o RandomForest. 
-    Um GridSearch simples foi realizado, testando todas as combinações possíveis dos seguintes hiperparâmetros:
+    After the optimization process, the best performing configuration was identified as follows::
 """
 )
 
-st.write(
-    """
-    ### **M – Modify and M - Modeling**
-    
-"""
-)
+col1, col2, col3 = st.columns([1, 2, 1])
 
-st.divider()
+with col1:
+    st.image("images_hd/best_hips.png", width=550)
+
 
 # 4. Model Performance
 st.write(
     """
     ### **A – Assess**
-    - Final evaluation using test set  
-    - Performance metrics and confusion matrix  
+    The optimal model was validated against the test dataset. Performance was measured using Accuracy, AUC, Recall, Precision and the ROC Curve; 
+    detailed results and metric values are presented in Section 4.
 """
 )
 
+st.divider()
 
 st.header("📈 4. Model Performance")
 
@@ -209,22 +192,58 @@ Below are the main evaluation metrics used to assess model performance.
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    st.metric("Accuracy", "XX%")
+    st.metric("Accuracy train", "84.12%")
 
 with col2:
-    st.metric("Precision", "XX%")
+    st.metric("Precision train", "84.22%")
 
 with col3:
-    st.metric("Recall", "XX%")
+    st.metric("Recall train", "87.73%")
 
 with col4:
-    st.metric("F1-Score", "XX%")
+    st.metric("AUC Score train", "90.97%")
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.metric("Accuracy test", "79.71%")
+
+with col2:
+    st.metric("Precision test", "77.9%")
+
+with col3:
+    st.metric("Recall test", "88.15%")
+
+with col4:
+    st.metric("AUC Score test", "89.53%")
+
+st.write("Roc Curve")
+st.image("images_hd/roc_curve.png")
 
 st.divider()
 
+# 5. Conclusion
+st.header("5. Conclusion")
 
-# 5. Final App
-st.header("💡 5. Interactive App")
+st.write(
+    """
+    With a 89.53% of AUC, the model demonstrates excellent discriminative power on test data proving that it can effectively distinguish between healthy and at-risk 
+    patients even without advanced medical variables.
+    
+    As a screening tool, the Recall was considered the critical metric, since the priority was minimizing False Negatives. The model successfully flags approximately 
+    88 out of 100 positive cases, acting as a reliable safety net using only simple and common data.
+    
+    The model adopts a conservative bias, prioritizing sensitivity over surgical precision. While this increases the rate of False Positives (healthy individuals flagged as risk), 
+    this behavior is intentional in preventive medicine: it is preferable to warn a healthy patient than to ignore a potentially fatal condition.
+    
+    With a global accuracy of ~80%, the project validates that basic demographic and symptomatic variables (e.g., age, chest pain) are powerful predictors for initial cardiac triage.
+"""
+)
+
+st.divider()
+
+# 6. Final App
+st.header("💡 6. Interactive App")
 
 st.write(
     """
@@ -237,5 +256,5 @@ The final classification model is available as an interactive app where users ca
 st.divider()
 
 st.write(
-    "Thank you for reading! Feel free to explore the app or the other pages in the sidebar."
+    "**Thank you for reading! Feel free to explore the app or the other pages in the sidebar.**"
 )

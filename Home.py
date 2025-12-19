@@ -5,11 +5,12 @@ st.title("Antoniel's Portfolio 📚")
 st.write(
     """
     ## Welcome to my portfolio!  
-    **Please feel free to explore the projects in the menu on the side. Below are brief descriptions 
-    of each one.**
+    **This portfolio is structured to demonstrate a versatile range of my data science competencies.**
+    
+    **Please feel free to explore the projects in the menu on the side. Below are brief descriptions of each one.**
 
     ### 🔥📈Time Series Project: A Technical Deep Dive 
-    - ⏱️Est. Read Time: 15–20 min
+    - ⏱️Est. Read Time: 20–25 min
     
     This project provides a comprehensive evaluation of daily fire occurrences within the Amazon region 
     through advanced time series forecasting. Utilizing a dataset spanning 2020 to 2024, the analysis 

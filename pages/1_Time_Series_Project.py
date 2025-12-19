@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("(In construction)📈Time Series Projects of Fires in Amazon Biome in Brazil")
+st.title("📈Time Series Projects of Fires in Amazon Biome in Brazil")
 
 st.write(
     """
@@ -291,3 +291,168 @@ st.divider()
 
 # 5. Results
 st.header("🎯 5. Results and Model performance")
+
+st.write(
+    """
+    #### Optimal Models
+    Following the hyperparameter optimization phase, the optimal configurations for each model were identified. These parameters, 
+    selected based on their performance within the 2023 validation window, are summarized below:
+    
+    ##### ARIMA
+"""
+)
+
+# Create columns
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric("AR(p)", "5")
+
+with col2:
+    st.metric("I(d)", "1")
+
+with col3:
+    st.metric("MA(q)", "41")
+
+st.write(
+    """
+    ##### XGBoost
+"""
+)
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric("n_estimators", "400")
+
+with col2:
+    st.metric("d_values", "8")
+
+with col3:
+    st.metric("q_values", "16")
+
+st.write(
+    """
+    #### Model Evaluation
+    The optimized ARIMA and XGBoost models were applied to the 2024 data to assess their real-world forecasting reliability. 
+    To determine which architecture best captured the complex dynamics of the fire series, the following evaluation metrics were calculated. 
+    These results offer a direct comparison of the statistical and machine learning approaches in a high-volatility environment:
+    
+    ##### ARIMA
+"""
+)
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.metric("RMSE", "234.69")
+
+with col2:
+    st.metric("RMSE std", "254.48")
+
+with col3:
+    st.metric("MAE", "190.75")
+
+with col4:
+    st.metric("MAE std", "209.84")
+
+st.write(
+    """
+    ##### XGBoost
+"""
+)
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.metric("RMSE", "199.94")
+
+with col2:
+    st.metric("RMSE std", "224.88")
+
+with col3:
+    st.metric("MAE", "163.58")
+
+with col4:
+    st.metric("MAE std", "183.63")
+
+st.write(
+    """
+    The evaluation metrics indicate that XGBoost outperforms the ARIMA model, providing predictions that are, on average, closer to the recorded observations. 
+    Furthermore, the lower standard deviation of the XGBoost residuals suggests greater predictive stability, as the model is less prone to extreme forecasting 
+    anomalies compared to ARIMA.
+
+    However, from an ecological perspective, the absolute magnitude of the errors remains significant. Both models were heavily impacted by the inherent stochasticity 
+    of the data. This is evidenced by the fact that the standard deviation of the errors exceeded the metrics themselves, confirming that high-variance 'noise' is a 
+    primary constraint on predictive accuracy in this volatile environment.
+    
+    While the aggregate metrics provide a global overview of annual performance, the pronounced seasonality identified during the exploratory phase necessitates a 
+    more granular evaluation. Analyzing model accuracy on a monthly basis offers deeper insight into how the forecasting architectures respond to shifting environmental 
+    conditions. The distribution of these errors and their seasonal variance are visualized in the box-plot below, highlighting periods of increased volatility and model 
+    sensitivity.
+"""
+)
+
+st.image(
+    "output/imgs/Boxplot_by_months.png",
+    # use_container_width=True,
+)
+
+st.write(
+    """
+    The monthly error distribution highlights that predictive difficulty is intrinsically linked to the seasonal cycle. From 
+    January to June, both models demonstrate near-perfect accuracy. This high performance is attributed to the low fire intensity characteristic of 
+    the wet season, forecasting periods of negligible activity, often represented by zero occurrences, presents minimal challenge to the architectures. However, 
+    the period from July to December represents the 'high-complexity' phase, with the most significant performance degradation occurring in August and September.
+    
+    During the critical fire season, the divergent behavior of the models becomes evident. Error magnitudes begin to escalate in July for both architectures. The 
+    ARIMA (blue) model exhibits a sustained decline in accuracy that persists through September. In contrast, while XGBoost (orange) experiences its peak error in August, it 
+    demonstrates superior resilience by stabilizing more effectively from September through the end of the year. Ultimately, the monthly breakdown confirms that 
+    XGBoost maintains a more robust error profile during the biome's most volatile periods.
+    
+    To conclude the performance analysis, the predicted values for the 2024 test set were plotted alongside the actual incidents and it's presented below:
+"""
+)
+
+st.image(
+    "output/imgs/Real_pred_comp.png",
+    # use_container_width=True,
+)
+
+st.write(
+    """
+    The visual comparison of the 2024 forecasts reveals a distinct trade-off between model stability and peak sensitivity. XGBoost (green) demonstrates superior 
+    robustness and physical consistency by successfully filtering high-frequency noise and avoiding negative values, however, it exhibits a 'ceiling effect,' 
+    systematically underestimating the magnitude of extreme seasonal peaks. On the other hand, the ARIMA model (orange) captures the intensity of these spikes more 
+    effectively but introduces significant volatility. This sensitivity leads to 'nervous' fluctuations and physically impossible negative predictions during the 
+    low season. Ultimately, XGBoost offers a more reliable conservative baseline for strategic planning, while ARIMA serves as a more sensitive, but noisier, 
+    indicator of potential high-intensity outlier events.
+"""
+)
+
+st.divider()
+
+# 6. Conclusion
+st.header("📖 6. Conclusion")
+
+st.write(
+    """
+    The analysis demonstrates that forecasting volatile environmental events like fires in Amazon requires a balance between statistical sensitivity and operational 
+    stability. While the XGBoost model proved to be the more reliable tool for general trend monitoring due to its physical consistency and noise-filtering capabilities, 
+    it struggled to capture the full magnitude of extreme events. On the other hand, ARIMA's ability to signal high-intensity peaks—despite its inherent "noise" and negative 
+    fluctuations—suggests that classical models still hold value as early-warning indicators for outlier days.
+    
+    In summary, the time series analysis reveals that fire activity in the Amazon is characterized by highly sophisticated and complex temporal dynamics. The biome is 
+    subject to a critical annual fire cycle, underscored by high-frequency stochastic behavior. By restricting the study to a univariate approach, the models were forced 
+    to contend with significant irreducible noise; consequently, within a professional ecological context, the current predictive precision remains below the threshold 
+    required for high-stakes operational deployment. These findings establish a clear roadmap for future research. Enhancing model efficacy will likely require the 
+    integration of exogenous environmental variables—such as precipitation and humidity—alongside the exploration of more advanced architectures. Such improvements are 
+    essential to reducing error magnitudes, particularly during the most critical periods of fire intensity.
+"""
+)
+
+st.divider()
+
+st.write(
+    "**Thank you for reading! Feel free to explore the other project pages in the sidebar.**"
+)

@@ -7,7 +7,7 @@ st.write(
     This page presents a comprehensive, visual analysis of fire trends within the Brazilian Amazon Biome, covering the full 
     pipeline from data preparation to model optimization and evaluation.
     
-    Repository: https://github.com/AAntoniel/-In-construction-Fires_brazil
+    Repository: https://github.com/AAntoniel/Fires_brazil
 
     Dataset: https://dataserver-coids.inpe.br/queimadas/queimadas/focos/csv/anual/Brasil_sat_ref/
     """

@@ -30,25 +30,33 @@ cols = st.columns(4)
 # Card 1: Python
 with cols[0]:
     with st.container(border=True):
-        st.image("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg")
+        st.image(
+            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+        )
         st.caption("Python")
 
 # Card 2: Scikit-Learn
 with cols[1]:
     with st.container(border=True):
-        st.image("https://raw.githubusercontent.com/devicons/devicon/master/icons/scikitlearn/scikitlearn-original.svg")
+        st.image(
+            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+        )
         st.caption("Excel/GoogleSheets")
 
 # Card 3: XGBoost (or similar)
 with cols[2]:
     with st.container(border=True):
-        st.image("https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg")
+        st.image(
+            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+        )
         st.caption("LookerStudio")
 
 # Card 4: Streamlit
 with cols[3]:
     with st.container(border=True):
-        st.image("https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg")
+        st.image(
+            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+        )
         st.caption("Git/GitHub")
 
 st.write(

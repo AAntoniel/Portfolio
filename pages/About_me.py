@@ -114,11 +114,13 @@ with cols[1]:
         st.image("https://www.svgrepo.com/show/223056/sheets-sheet.svg")
         st.write("Excel/GoogleSheets")
 
+
 # Card 3: XGBoost (or similar)
 with cols[2]:
     with st.container(border=True):
         st.image("https://www.svgrepo.com/show/354012/looker-icon.svg")
         st.write("LookerStudio")
+
 
 # Card 4: Streamlit
 with cols[3]:

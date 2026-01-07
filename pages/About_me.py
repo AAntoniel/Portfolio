@@ -39,7 +39,7 @@ with cols[0]:
 with cols[1]:
     with st.container(border=True):
         st.image(
-            "https://commons.wikimedia.org/wiki/File:Google_Sheets_logo_(2014-2020).svg#/media/File:Google_Sheets_logo_(2014-2020).svg"
+            "https://upload.wikimedia.org/wikipedia/commons/a/ae/Google_Sheets_2020_Logo.svg"
         )
         st.caption("Excel/GoogleSheets")
 

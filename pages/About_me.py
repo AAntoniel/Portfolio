@@ -39,7 +39,7 @@ with cols[0]:
 with cols[1]:
     with st.container(border=True):
         st.image(
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+            "https://commons.wikimedia.org/wiki/File:Google_Sheets_logo_(2014-2020).svg#/media/File:Google_Sheets_logo_(2014-2020).svg"
         )
         st.caption("Excel/GoogleSheets")
 
@@ -47,15 +47,15 @@ with cols[1]:
 with cols[2]:
     with st.container(border=True):
         st.image(
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+            "https://www.svgrepo.com/show/354012/looker-icon.svg"
         )
-        st.caption("LookerStudio")
+        st.caption("BI Tools")
 
 # Card 4: Streamlit
 with cols[3]:
     with st.container(border=True):
         st.image(
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
         )
         st.caption("Git/GitHub")
 

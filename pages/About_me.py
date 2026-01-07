@@ -39,7 +39,7 @@ with cols[0]:
 with cols[1]:
     with st.container(border=True):
         st.image(
-            "https://upload.wikimedia.org/wikipedia/commons/3/30/Google_Sheets_logo_%282014-2020%29.svg"
+            "https://www.svgrepo.com/show/223056/sheets-sheet.svg"
         )
         st.caption("Excel/GoogleSheets")
 
@@ -47,7 +47,7 @@ with cols[1]:
 with cols[2]:
     with st.container(border=True):
         st.image(
-            "https://www.svgrepo.com/show/223056/sheets-sheet.svg"
+            "https://www.svgrepo.com/show/354012/looker-icon.svg"
         )
         st.caption("BI Tools")
 

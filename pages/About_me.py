@@ -47,7 +47,7 @@ with cols[1]:
 with cols[2]:
     with st.container(border=True):
         st.image(
-            "https://www.svgrepo.com/show/354012/looker-icon.svg"
+            "https://www.svgrepo.com/show/223056/sheets-sheet.svg"
         )
         st.caption("BI Tools")
 

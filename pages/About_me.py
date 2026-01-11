@@ -1,3 +1,4 @@
+83% of storage used … If you run out, you can't create, edit, and upload files. Get 200 GB for R$14.99/mo.
 import streamlit as st
 
 st.title("About me")
@@ -97,33 +98,32 @@ st.write(
 
 st.write("#### 🛠️Technical Skills")
 
-# Create a 4-column grid
 cols = st.columns(4)
 
-# Card 1: Python
 with cols[0]:
+    # Python
     with st.container(border=True):
         st.image(
             "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
         )
         st.write("Python")
 
-# Card 2: Scikit-Learn
 with cols[1]:
+    # Sheets
     with st.container(border=True):
         st.image("https://www.svgrepo.com/show/223056/sheets-sheet.svg")
         st.write("Excel/GoogleSheets")
 
 
-# Card 3: XGBoost (or similar)
 with cols[2]:
+    # lookerstudio
     with st.container(border=True):
         st.image("https://www.svgrepo.com/show/354012/looker-icon.svg")
         st.write("LookerStudio")
 
 
-# Card 4: Streamlit
 with cols[3]:
+    # Git
     with st.container(border=True):
         st.image(
             "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
@@ -135,6 +135,7 @@ st.write("#### 📚Currently studying")
 cols = st.columns(4)
 
 with cols[0]:
+    # SQL
     with st.container(border=True):
         st.image(
             "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg"
@@ -142,6 +143,7 @@ with cols[0]:
         st.write("SQL")
 
 with cols[1]:
+    # Stats.
     with st.container(border=True):
         st.image("https://www.svgrepo.com/show/313344/statistics.svg")
         st.write("Statistics")
@@ -154,3 +156,49 @@ st.write(
     in-depth statistical analysis to building and deploying functional applications for real-world usage. I invite you to explore my work through the menu on the side.
 """
 )
+
+st.markdown("---")
+st.write("### 📫 Contact & Socials")
+st.write("")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    # LinkedIn
+    st.markdown("""
+        <div style="text-align: center;">
+            <a href="https://www.linkedin.com/in/antoniel-k-stefaniak/" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="50">
+            </a>
+            <p style="margin-bottom: 0px; margin-top: 10px;">GitHub</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col2:
+    # GitHub
+    st.markdown("""
+        <div style="text-align: center;">
+            <a href="https://github.com/AAntoniel" target="_blank">
+                <img src="https://www.svgrepo.com/show/439171/github.svg" width="50" style="filter: invert(100%) if_dark_mode;">
+            </a>
+            <p style="margin-bottom: 0px; margin-top: 10px;">GitHub</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col3:
+    # Email
+    st.markdown(
+        """
+        <div style="text-align: center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" width="50">
+            <p style="margin-bottom: 0px; margin-top: 10px;">Email</p>
+            <p style="font-size: 16px;">antonielstefaniak@gmail.com</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+

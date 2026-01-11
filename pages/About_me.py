@@ -1,4 +1,3 @@
-83% of storage used … If you run out, you can't create, edit, and upload files. Get 200 GB for R$14.99/mo.
 import streamlit as st
 
 st.title("About me")

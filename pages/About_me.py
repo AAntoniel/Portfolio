@@ -148,7 +148,7 @@ if lang == "EN-US":
     with cols[1]:
         # Stats.
         with st.container(border=True):
-            st.image("https://www.svgrepo.com/show/313344/statistics.svg")
+            st.image("https://www.svgrepo.com/show/292706/statistics-graph.svg")
             st.write("Statistics")
 
     st.write(
@@ -348,7 +348,7 @@ else:
     with cols[1]:
         # Stats.
         with st.container(border=True):
-            st.image("https://www.svgrepo.com/show/313344/statistics.svg")
+            st.image("https://www.svgrepo.com/show/292706/statistics-graph.svg")
             st.write("Estatística")
 
     st.write(

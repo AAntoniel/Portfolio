@@ -133,12 +133,10 @@ if lang == "EN-US":
             )
             st.write("Git/GitHub")
 
-    st.write("#### 📚Currently studying")
-
     cols = st.columns(4)
 
     with cols[0]:
-        # SQL
+        # Python
         with st.container(border=True):
             st.image(
                 "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg"
@@ -146,10 +144,36 @@ if lang == "EN-US":
             st.write("SQL")
 
     with cols[1]:
+        # lookerstudio
+        with st.container(border=True):
+            st.image("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg")
+            st.write("Pandas")
+
+    with cols[2]:
+        # Sheets
+        with st.container(border=True):
+            st.image("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg")
+            st.write("Scikitlearn")
+
+    st.write("#### 📚Currently studying")
+
+    cols = st.columns(4)
+
+    with cols[0]:
         # Stats.
         with st.container(border=True):
             st.image("https://www.svgrepo.com/show/292706/statistics-graph.svg")
             st.write("Statistics")
+
+    with cols[1]:
+        with st.container(border=True):
+            st.image("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg")
+            st.write("FastAPI")
+
+    with cols[2]:
+        with st.container(border=True):
+            st.image("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-plain-wordmark.svg")
+            st.write("Docker")
 
     st.write(
         """
@@ -333,12 +357,10 @@ else:
             )
             st.write("Git/GitHub")
 
-    st.write("#### 📚Estudando no momento")
-
     cols = st.columns(4)
 
     with cols[0]:
-        # SQL
+        # Python
         with st.container(border=True):
             st.image(
                 "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg"
@@ -346,10 +368,36 @@ else:
             st.write("SQL")
 
     with cols[1]:
+        # lookerstudio
+        with st.container(border=True):
+            st.image("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg")
+            st.write("Pandas")
+
+    with cols[2]:
+        # Sheets
+        with st.container(border=True):
+            st.image("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg")
+            st.write("Scikitlearn")
+
+    st.write("#### 📚Estudando no momento")
+
+    cols = st.columns(4)
+
+    with cols[0]:
         # Stats.
         with st.container(border=True):
             st.image("https://www.svgrepo.com/show/292706/statistics-graph.svg")
             st.write("Estatística")
+
+    with cols[1]:
+        with st.container(border=True):
+            st.image("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg")
+            st.write("FastAPI")
+
+    with cols[2]:
+        with st.container(border=True):
+            st.image("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-plain-wordmark.svg")
+            st.write("Docker")
 
     st.write(
         """

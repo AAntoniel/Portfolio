@@ -37,6 +37,7 @@ if lang == "EN-US":
         ✔️ **Dataset:** UCI Heart Disease  
         ✔️ **Task:** Binary Classification  
         ✔️ **Model Type:** Random Forest  
+        ✔️ **Architecture:** Decoupled (FastAPI Backend + Streamlit Frontend)  
         ✔️ **Pipeline:** Following the **SEMMA methodology**  
     """
     )
@@ -226,8 +227,24 @@ if lang == "EN-US":
 
     st.divider()
 
+    st.header("🏗️ 5. System Architecture & Implementation")
+    st.write(
+        """
+        To transition this model from a research notebook to a production-ready tool, it was implemented a decoupled architecture. This ensures that 
+        the model is separated from the visual interface, allowing for better scalability and maintenance.
+        
+        **The Breakdown**
+        
+        - **Backend (FastAPI)**: Acts as the core inference engine. It handles model loading, data validation via Pydantic, and serves predictions through a RESTful API.
+        - **Frontend (Streamlit)**: Provides a clean, intuitive interface for users to input clinical data and receive immediate visual feedback.
+        - **Communication**: The system uses standard HTTP requests (JSON) to exchange data between the frontend and the backend API.
+    """
+    )
+
+    st.divider()
+
     # 5. Conclusion
-    st.header("5. Conclusion")
+    st.header("6. Conclusion")
 
     st.write(
         """
@@ -240,14 +257,19 @@ if lang == "EN-US":
         The model adopts a conservative bias, prioritizing sensitivity over surgical precision. While this increases the rate of False Positives (healthy individuals flagged as risk), 
         this behavior is intentional in preventive medicine: it is preferable to warn a healthy patient than to ignore a potentially fatal condition.
         
-        With a global accuracy of ~80%, the project validates that basic demographic and symptomatic variables (e.g., age, chest pain) are powerful predictors for initial cardiac triage.
+        Beyond statistical performance, this project demonstrates a production-ready mindset. By serving the model via a decoupled FastAPI backend, the solution is transformed 
+        from a static notebook into a scalable service. This architecture ensures that the predictive power of the model is easily accessible via a RESTful API, making it ready 
+        for integration into broader healthcare ecosystems or mobile applications.
+        
+        With a global accuracy of ~80%, the project validates that basic demographic and symptomatic variables (e.g., age, chest pain) are powerful predictors for initial cardiac triage 
+        when backed by a robust, modern software architecture.
     """
     )
 
     st.divider()
 
     # 6. Final App
-    st.header("💡 6. Interactive App")
+    st.header("💡 7. Interactive App")
 
     st.write(
         """
@@ -292,7 +314,8 @@ else:
 
         ✔️ **Dataset:** UCI Heart Disease  
         ✔️ **Task:** Classificação binária  
-        ✔️ **Model Type:** Random Forest  
+        ✔️ **Modelo de Previsão:** Random Forest  
+        ✔️ **Arquitetura**: Desacoplada (Backend FastAPI + Frontend Streamlit)  
         ✔️ **Pipeline:** Metodologia **SEMMA**  
     """
     )
@@ -481,8 +504,24 @@ else:
 
     st.divider()
 
-    # 5. Conclusion
-    st.header("5. Conclusão")
+    st.header("5. Arquitetura e Implementação do Sistema")
+    st.write(
+        """
+        Para realizar a transição deste modelo de um notebook para uma ferramenta pronta para produção, foi implementada uma arquitetura desacoplada. Isso garante 
+        que o modelo fique separado da interface visual, permitindo maior escalabilidade e facilidade de manutenção.
+
+        **Detalhamento da Estrutura:**
+
+        - **Backend (FastAPI)**: Atua como o motor central de inferência. Responsável pelo *model serving*, validação de dados com Pydantic e exposição de *endpoints* RESTful.
+        - **Frontend (Streamlit)**: Oferece uma interface limpa e intuitiva para que os usuários insiram dados clínicos e visualizem os resultados de forma simplificada..
+        - **Comunicação**: O sistema utiliza requisições HTTP padrão (JSON) para a troca de dados entre o frontend e a API do backend.
+    """
+    )
+
+    st.divider()
+
+    # 6. Conclusion
+    st.header("6. Conclusão")
 
     st.write(
         """
@@ -495,16 +534,20 @@ else:
         O modelo adota um viés conservador, priorizando a sensibilidade em detrimento de uma precisão cirúrgica. Embora isso aumente a taxa de Falsos Positivos (indivíduos
         saudáveis classificados com risco), esse comportamento é intencional na medicina preventiva: é preferível alertar um paciente saudável do que ignorar uma condição
         potencialmente fatal.
+        
+        Além do desempenho estatístico, este trabalho reflete uma visão de engenharia de software aplicada a dados. Ao servir o modelo por meio de um backend FastAPI 
+        desacoplado, a solução deixa de ser um notebook estático para se tornar um serviço escalável. Essa arquitetura garante que o poder preditivo do modelo seja facilmente 
+        acessível via uma API RESTful, tornando-o pronto para integração em ecossistemas de saúde mais amplos ou aplicativos móveis, por exemplo.
 
-        Apresentando uma acurácia global de aproximadamente 80%, o projeto demonstra que indicadores demográficos e sintomas simples, como idade e dor no peito, funcionam como 
-        preditores robustos para uma triagem cardíaca inicial.
+        Atingindo cerca de 80% de acurácia, o projeto permite inferir que dados demográficos e sintomas básicos são fundamentais para a triagem inicial, desde que implementados em 
+        uma infraestrutura técnica sólida e escalável.
     """
     )
 
     st.divider()
 
-    # 6. Final App
-    st.header("💡 6. App Interativo")
+    # 7. Final App
+    st.header("💡 7. App Interativo")
 
     st.write(
         """

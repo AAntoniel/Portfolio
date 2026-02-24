@@ -31,9 +31,9 @@ if lang == "EN-US":
     st.write("⏱️*Est. Read Time: 10–15 min*")
 
     st.write("""
-        This page presents the full development of a classification model app. It includes 
-        data preprocessing, feature selection, model implementation, and performance evaluation. The 
-        entire workflow follows the **SEMMA** methodology developed by SAS. 
+        This project showcases the end-to-end development of a heart disease classification system following the SEMMA methodology. It 
+        features a decoupled architecture, using FastAPI to serve the model as an independent service, ensuring high scalability 
+        and a clean separation between data logic and the user interface.
     """)
 
     st.divider()
@@ -83,10 +83,9 @@ else:
     st.write("⏱️*Leitura estimada: 10–15 min*")
 
     st.write("""
-            Esta página apresenta o desenvolvimento completo de uma aplicação de modelo de classificação. 
-            O projeto abrange desde o pré-processamento de dados e seleção de variáveis (feature selection) até 
-            a implementação do modelo e avaliação de desempenho. Todo o fluxo de trabalho segue a metodologia **SEMMA**, 
-            desenvolvida pelo SAS."
+            Este projeto apresenta o desenvolvimento completo de um sistema de classificação de doenças cardíacas seguindo a 
+            metodologia SEMMA. Ele apresenta uma arquitetura desacoplada, utilizando FastAPI para servir o modelo como um serviço independente, 
+            garantindo alta escalabilidade e uma separação clara entre a lógica de dados e a interface do usuário.
         """)
 
     st.divider()

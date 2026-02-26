@@ -175,6 +175,11 @@ if lang == "EN-US":
             st.image("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-plain-wordmark.svg")
             st.write("Docker")
 
+    with cols[3]:
+        with st.container(border=True):
+            st.image("https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/ml-flow-wordmark.svg")
+            st.write("MLFlow")
+
     st.write(
         """
         #### **🚀Explore My Portfolio**
@@ -398,6 +403,11 @@ else:
         with st.container(border=True):
             st.image("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-plain-wordmark.svg")
             st.write("Docker")
+
+    with cols[3]:
+        with st.container(border=True):
+            st.image("https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/ml-flow-wordmark.svg")
+            st.write("MLFlow")
 
     st.write(
         """

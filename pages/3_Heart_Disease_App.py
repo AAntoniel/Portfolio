@@ -2,8 +2,9 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from feature_engine import discretisation, encoding
+import requests
 
-model = pd.read_pickle("model_heart_dis.pkl")
+url = 'https://heart-disease-api-rp94.onrender.com/predict'
 
 lang = st.sidebar.radio("Language / Idioma", ["EN-US", "PT-BR"])
 
@@ -95,66 +96,6 @@ if lang == "EN-US":
         exc_angina = st.radio("Exercise Induced Angina?", ["No", "Yes"])
         exc_angina_bin = 1 if exc_angina == "Yes" else 0
 
-    # expander = st.expander("Advanced Medical Test Results (Optional/Estimated)")
-    # with expander:
-    #     oldpeak = st.number_input("ST Depression (Oldpeak)", 0.0, 7.0, 0.0, step=0.1)
-    #
-    #     slope_opt = st.selectbox("ST Slope", ["Upsloping", "Flat", "Downsloping"])
-    #     slope_mapping = {"Upsloping": 1, "Flat": 2, "Downsloping": 3}
-    #     slope = slope_mapping[slope_opt]
-    #
-    #     n_fl_maj_ves = st.slider("Major Vessels (Fluoroscopy)", 0, 3, 0)
-    #
-    #     thal_opt = st.selectbox("Thalassemia", ["Normal", "Fixed Defect", "Reversable Defect"])
-    #     thal_mapping = {"Normal": 3, "Fixed Defect": 6, "Reversable Defect": 7}
-    #     thal = thal_mapping[thal_opt]
-
-    user_input_dict = {
-        "age": age,
-        "sex": sex_bin,
-        "chest_pain": chest_pain,
-        "restbps": restbps,
-        "chol": chol,
-        "max_heart_rate": max_heart_rate,
-        "exc_angina": exc_angina_bin,
-        # 'oldpeak': oldpeak,
-        # 'slope': slope,
-        # 'n_fl_maj_ves': n_fl_maj_ves,
-        # 'thal': thal
-    }
-
-    df = pd.DataFrame([user_input_dict])
-
-    proba = model["model"].predict_proba(df[model["features"]])[:, 1][0]
-    st.markdown("---")
-
-    if proba < 0.3:
-        st.success(f"🟢 **Low Risk:** Likelihood of heart disease {proba:.1%}")
-        st.write("**Great! Your profile suggests a healthy heart condition.**")
-
-    elif 0.3 <= proba < 0.7:
-        st.warning(f"🟡 **Moderate Risk:** Likelihood of heart disease {proba:.1%}")
-        st.write("**Attention:** Your profile shows some risk factors.")
-        st.info(
-            "**Recommendation**: Schedule a routine check-up with a cardiologist to be sure."
-        )
-
-    else:
-        st.error(f"🔴 **High Risk:** Likelihood of heart disease {proba:.1%}")
-        st.write("**Alert:** Your profile strongly resembles patients with heart disease.")
-        st.warning(
-            "**Recommendation**: Please consult a doctor immediately for clinical exams."
-        )
-
-    st.divider()
-
-    st.write(
-        """
-        **Thank you for reading and trying the app! If you want to check how was the construction of this app, please read the 'Heart Disease Project' in the side bar.**
-        
-        **Feel free to also explore the other pages in the sidebar.**
-    """
-    )
 else:
     st.title("❤️ Calculadora de Risco de Doença Cardíaca")
     st.markdown("### Um Projeto de Portfólio de Ciência de Dados")
@@ -243,21 +184,8 @@ else:
         exc_angina = st.radio("Angina Induzida por Exercício?", ["Não", "Sim"])
         exc_angina_bin = 1 if exc_angina == "Sim" else 0
 
-    # expander = st.expander("Advanced Medical Test Results (Optional/Estimated)")
-    # with expander:
-    #     oldpeak = st.number_input("ST Depression (Oldpeak)", 0.0, 7.0, 0.0, step=0.1)
-    #
-    #     slope_opt = st.selectbox("ST Slope", ["Upsloping", "Flat", "Downsloping"])
-    #     slope_mapping = {"Upsloping": 1, "Flat": 2, "Downsloping": 3}
-    #     slope = slope_mapping[slope_opt]
-    #
-    #     n_fl_maj_ves = st.slider("Major Vessels (Fluoroscopy)", 0, 3, 0)
-    #
-    #     thal_opt = st.selectbox("Thalassemia", ["Normal", "Fixed Defect", "Reversable Defect"])
-    #     thal_mapping = {"Normal": 3, "Fixed Defect": 6, "Reversable Defect": 7}
-    #     thal = thal_mapping[thal_opt]
-
-    user_input_dict = {
+# prediction
+user_input_dict = {
         "age": age,
         "sex": sex_bin,
         "chest_pain": chest_pain,
@@ -265,41 +193,61 @@ else:
         "chol": chol,
         "max_heart_rate": max_heart_rate,
         "exc_angina": exc_angina_bin,
-        # 'oldpeak': oldpeak,
-        # 'slope': slope,
-        # 'n_fl_maj_ves': n_fl_maj_ves,
-        # 'thal': thal
     }
 
-    df = pd.DataFrame([user_input_dict])
+st.markdown("---")
 
-    proba = model["model"].predict_proba(df[model["features"]])[:, 1][0]
-    st.markdown("---")
+button_text = "**Calculate Risk**" if lang == "EN-US" else "**Calcular Risco**"
+spinner_text = "Making prediction..." if lang == "EN-US" else "Realizando a previsão..."
 
-    if proba < 0.3:
-        st.success(f"🟢 **Baixo Risco:** Probabilidade de doença cardíaca em {proba:.1%}")
-        st.write("**Excelente!** Seu perfil sugere uma condição cardíaca saudável.")
+if st.button(button_text):
+    with st.spinner(spinner_text):
+        try:
+            response = requests.post(url, json=user_input_dict)
+            response.raise_for_status()  # Verifies api errors
 
-    elif 0.3 <= proba < 0.7:
-        st.warning(f"🟡 **Risco Moderado:** Probabilidade de doença cardíaca em {proba:.1%}")
-        st.write("**Atenção:** Seu perfil apresenta alguns fatores de risco.")
-        st.info(
-            "**Recomendação**: Procure um cardiologista para realizar exames de rotina e tirar suas dúvidas."
-        )
+            result = response.json()
+            proba = result["Prediction"]
 
-    else:
-        st.error(f"🔴 **Risco Alto:** Probabilidade de doença cardíaca em {proba:.1%}")
-        st.write("**Alerta:** Seu perfil apresenta fortes semelhanças com o histórico de pacientes que possuem doenças cardíacas.")
-        st.warning(
-            "**Recomendação**: Por favor, consulte um médico o quanto antes para realizar exames diagnósticos."
-        )
+            if proba < 0.3:
+                st.success(f"🟢 **{'Low Risk' if lang == 'EN-US' else 'Baixo Risco'}:** {proba:.1%}")
+                st.write(
+                    "**Great! Your profile suggests a healthy heart condition.**" if lang == "EN-US" else "**Excelente!** Seu perfil sugere uma condição cardíaca saudável.")
 
-    st.divider()
+            elif 0.3 <= proba < 0.7:
+                st.warning(f"🟡 **{'Moderate Risk' if lang == 'EN-US' else 'Risco Moderado'}:** {proba:.1%}")
+                st.write(
+                    "**Attention:** Your profile shows some risk factors." if lang == "EN-US" else "**Atenção:** Seu perfil apresenta alguns fatores de risco.")
+                st.info(
+                    "**Recommendation**: Schedule a routine check-up with a cardiologist to be sure." if lang == "EN-US" else "**Recomendação**: Procure um cardiologista para realizar exames de rotina e tirar suas dúvidas."
+                )
 
+            else:
+                st.error(f"🔴 **{'High Risk' if lang == 'EN-US' else 'Risco Alto'}:** {proba:.1%}")
+                st.write(
+                    "**Alert:** Your profile strongly resembles patients with heart disease." if lang == "EN-US" else "**Alerta:** Seu perfil apresenta fortes semelhanças com o histórico de doenças cardíacas.")
+                st.warning(
+                    "**Recommendation**: Please consult a doctor immediately for clinical exams." if lang == "EN-US"  else "**Recomendação**: Por favor, consulte um médico o quanto antes para realizar exames diagnósticos."
+                )
+
+        except requests.exceptions.RequestException as e:
+            st.error("Error connecting to the API." if lang == "EN-US" else "Erro ao conectar com a API.")
+
+st.divider()
+
+if lang == "EN-US":
     st.write(
         """
-        **Obrigado por ler e testar o app! Se quiser ver como foi o processo de construção deste projeto, por favor, leia a seção 'Heart Disease Project' na barra lateral.**
+        **Thank you for reading and trying the app! If you want to check how was the construction of this app, please read the 'Heart Disease Project' in the side bar.**
 
-        **Sinta-se a vontade para explorar as outras páginas no menu lateral.**
+        **Feel free to also explore the other pages in the sidebar.**
     """
+    )
+else:
+    st.write(
+            """
+            **Obrigado por ler e testar o app! Se quiser ver como foi o processo de construção deste projeto, por favor, leia a seção 'Heart Disease Project' na barra lateral.**
+    
+            **Sinta-se a vontade para explorar as outras páginas no menu lateral.**
+        """
     )

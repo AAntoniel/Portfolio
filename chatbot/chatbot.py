@@ -67,14 +67,19 @@ template = ChatPromptTemplate([
 ])
 
 def agent_response(question):
-    context = retrieve(question)
+    try:
+        docs = retrieve(question)
+        context = "\n\n".join([d.page_content for d in docs])
 
-    prompt_value = template.invoke({
-        "context": context,
-        "user_input": question,
-        "today": today
-    })
+        prompt_value = template.invoke({
+            "context": context,
+            "user_input": question,
+            "today": today
+        })
 
-    response = model.invoke(prompt_value)
+        response = model.invoke(prompt_value)
 
-    return response.content
+        return response.content
+
+    except Exception as e:
+        return "Desculpe, ocorreu um erro ao consultar o currículo."

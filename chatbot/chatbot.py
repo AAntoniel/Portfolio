@@ -53,7 +53,7 @@ model = ChatGoogleGenerativeAI(
 
 today = datetime.now().strftime("%B de %Y")
 
-template = ChatPromptTemplate([
+template = ChatPromptTemplate.from_messages([
     ("system", """Você é o assistente virtual do Antoniel. Responda as perguntas dos rcrutadores de forma profissional e simpátca, usando apenas o contexto 
                   fornecido abaixo.
      
@@ -68,8 +68,7 @@ template = ChatPromptTemplate([
 
 def agent_response(question):
     try:
-        docs = retrieve(question)
-        context = "\n\n".join([d.page_content for d in docs])
+        context = retrieve(question)
 
         prompt_value = template.invoke({
             "context": context,
@@ -82,4 +81,4 @@ def agent_response(question):
         return response.content
 
     except Exception as e:
-        return "Desculpe, ocorreu um erro ao consultar o currículo."
+        return f"Desculpe, ocorreu um erro ao consultar o currículo. {e}"

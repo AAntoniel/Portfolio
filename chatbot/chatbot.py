@@ -9,7 +9,7 @@ from langchain_chroma import Chroma
 from datetime import datetime
 
 load_dotenv()
-
+# os.environ["GOOGLE_API_KEY"] = os.getenv("GEMINI_API_KEY")
 if "GEMINI_API_KEY" in st.secrets:
     os.environ["GOOGLE_API_KEY"] = st.secrets["GEMINI_API_KEY"]
 elif os.getenv("GEMINI_API_KEY"):
@@ -47,7 +47,7 @@ def retrieve(quest):
 
 
 model = ChatGoogleGenerativeAI(
-    model = "gemini-2.5-flash",
+    model = "gemini-3.1-flash-lite-preview",
     temperature = 0.2,
 )
 
@@ -78,7 +78,7 @@ def agent_response(question):
 
         response = model.invoke(prompt_value)
 
-        return response.content
+        return response.content[0]['text']
 
     except Exception as e:
         return f"Desculpe, ocorreu um erro ao consultar o currículo. {e}"

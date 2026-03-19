@@ -50,7 +50,7 @@ if lang == "EN-US":
     )
 
     st.image(
-        "output/imgs/dataset.png",
+        "output_TS/imgs/dataset.png",
         # use_container_width=True,
     )
 
@@ -82,7 +82,7 @@ if lang == "EN-US":
     )
 
     st.image(
-        "output/imgs/Dist_by_biomes.png",
+        "output_TS/imgs/Dist_by_biomes.png",
         # use_container_width=True,
     )
 
@@ -98,7 +98,7 @@ if lang == "EN-US":
     )
 
     st.image(
-        "output/imgs/Dist_by_regions.png",
+        "output_TS/imgs/Dist_by_regions.png",
         # use_container_width=True,
     )
 
@@ -120,7 +120,7 @@ if lang == "EN-US":
     )
 
     st.image(
-        "output/imgs/TS_by_amaz_cerr_daily.png",
+        "output_TS/imgs/TS_by_amaz_cerr_daily.png",
         # use_container_width=True,
     )
 
@@ -150,7 +150,7 @@ if lang == "EN-US":
     )
 
     st.image(
-        "output/imgs/Res_norm_amaz.png",
+        "output_TS/imgs/Res_norm_amaz.png",
         # use_container_width=True,
     )
 
@@ -171,7 +171,7 @@ if lang == "EN-US":
     )
 
     st.image(
-        "output/imgs/Amaz_ts_dec.png",
+        "output_TS/imgs/Amaz_ts_dec.png",
         # use_container_width=True,
     )
 
@@ -201,7 +201,7 @@ if lang == "EN-US":
     )
 
     st.image(
-        "output/imgs/Amaz_ACF_PACF.png",
+        "output_TS/imgs/Amaz_ACF_PACF.png",
         # use_container_width=True,
     )
 
@@ -262,7 +262,7 @@ if lang == "EN-US":
     )
 
     st.image(
-        "output/imgs/Sliding_window.png",
+        "output_TS/imgs/Sliding_window.png",
         # use_container_width=True,
     )
 
@@ -287,7 +287,7 @@ if lang == "EN-US":
 
     with col2:
         st.image(
-            "output/imgs/hips.png",
+            "output_TS/imgs/hips.png",
             # use_container_width=True,
         )
 
@@ -398,7 +398,7 @@ if lang == "EN-US":
     )
 
     st.image(
-        "output/imgs/Boxplot_by_months.png",
+        "output_TS/imgs/Boxplot_by_months.png",
         # use_container_width=True,
     )
 
@@ -419,7 +419,7 @@ if lang == "EN-US":
     )
 
     st.image(
-        "output/imgs/Real_pred_comp.png",
+        "output_TS/imgs/Real_pred_comp.png",
         # use_container_width=True,
     )
 
@@ -508,7 +508,7 @@ else:
     )
 
     st.image(
-        "output/imgs/dataset.png",
+        "output_TS/imgs/dataset.png",
         # use_container_width=True,
     )
 
@@ -539,7 +539,7 @@ else:
     )
 
     st.image(
-        "output/imgs/Dist_by_biomes.png",
+        "output_TS/imgs/Dist_by_biomes.png",
         # use_container_width=True,
     )
 
@@ -555,7 +555,7 @@ else:
     )
 
     st.image(
-        "output/imgs/Dist_by_regions.png",
+        "output_TS/imgs/Dist_by_regions.png",
         # use_container_width=True,
     )
 
@@ -577,7 +577,7 @@ else:
     )
 
     st.image(
-        "output/imgs/TS_by_amaz_cerr_daily.png",
+        "output_TS/imgs/TS_by_amaz_cerr_daily.png",
         # use_container_width=True,
     )
 
@@ -607,7 +607,7 @@ else:
     )
 
     st.image(
-        "output/imgs/Res_norm_amaz.png",
+        "output_TS/imgs/Res_norm_amaz.png",
         # use_container_width=True,
     )
 
@@ -628,7 +628,7 @@ else:
     )
 
     st.image(
-        "output/imgs/Amaz_ts_dec.png",
+        "output_TS/imgs/Amaz_ts_dec.png",
         # use_container_width=True,
     )
 
@@ -660,7 +660,7 @@ else:
     )
 
     st.image(
-        "output/imgs/Amaz_ACF_PACF.png",
+        "output_TS/imgs/Amaz_ACF_PACF.png",
         # use_container_width=True,
     )
 
@@ -722,7 +722,7 @@ else:
     )
 
     st.image(
-        "output/imgs/Sliding_window.png",
+        "output_TS/imgs/Sliding_window.png",
         # use_container_width=True,
     )
 
@@ -747,7 +747,7 @@ else:
 
     with col2:
         st.image(
-            "output/imgs/hips.png",
+            "output_TS/imgs/hips.png",
             # use_container_width=True,
         )
 
@@ -857,7 +857,7 @@ else:
     )
 
     st.image(
-        "output/imgs/Boxplot_by_months.png",
+        "output_TS/imgs/Boxplot_by_months.png",
         # use_container_width=True,
     )
 
@@ -878,7 +878,7 @@ else:
     )
 
     st.image(
-        "output/imgs/Real_pred_comp.png",
+        "output_TS/imgs/Real_pred_comp.png",
         # use_container_width=True,
     )
 

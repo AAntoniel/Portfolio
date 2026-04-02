@@ -1,5 +1,4 @@
 import streamlit as st
-from chatbot.chatbot import agent_response
 import requests
 
 st.set_page_config(page_title="Antoniel AI - Portfólio")
